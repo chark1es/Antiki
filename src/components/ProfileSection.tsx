@@ -28,12 +28,12 @@ const ProfileSection: React.FC<ProfileSectionProps> = ({
 
     // Determine background gradient based on side - different colors for Anton and Kiki
     const bgGradient = side === "left"
-        ? "bg-gradient-to-r from-indigo-50 to-white" // Anton - indigo
-        : "bg-gradient-to-l from-teal-50 to-white";  // Kiki - teal
+        ? "bg-gradient-to-l from-white via-yellow-50 to-yellow-100" // Anton - white to yellow (left to right)
+        : "bg-gradient-to-r from-white via-red-50 to-red-100";  // Kiki - white to red (right to left)
 
     // Text colors for each person
-    const textColor = side === "left" ? "text-indigo-900" : "text-teal-900";
-    const textColorLight = side === "left" ? "text-indigo-800" : "text-teal-800";
+    const textColor = side === "left" ? "text-yellow-900" : "text-red-900";
+    const textColorLight = side === "left" ? "text-yellow-800" : "text-red-800";
 
     return (
         <motion.div
@@ -50,13 +50,9 @@ const ProfileSection: React.FC<ProfileSectionProps> = ({
             transition={{ type: "spring", stiffness: 400, damping: 25, duration: 0.2 }}
         >
             <div
-                className={`h-full w-full flex flex-col items-center justify-center cursor-pointer ${isActive ? bgGradient : `hover:${bgGradient}`
-                    } transition-all duration-300 relative group`}
+                className={`h-full w-full flex flex-col items-center justify-center cursor-pointer ${bgGradient} transition-all duration-300 relative`}
                 onClick={onToggleNav}
             >
-                {/* Subtle hover overlay */}
-                <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-5 transition-opacity duration-300"></div>
-
                 <motion.div
                     className="flex flex-col items-center px-4"
                     initial={{ y: 0 }}
@@ -76,8 +72,8 @@ const ProfileSection: React.FC<ProfileSectionProps> = ({
 
                     <motion.div
                         className={`w-24 h-0.5 mb-6 ${side === "left"
-                            ? "bg-gradient-to-r from-transparent via-indigo-300 to-transparent"
-                            : "bg-gradient-to-r from-transparent via-teal-300 to-transparent"
+                            ? "bg-gradient-to-r from-transparent via-yellow-300 to-transparent"
+                            : "bg-gradient-to-r from-transparent via-red-300 to-transparent"
                             }`}
                         animate={{
                             width: showNav ? "3rem" : "5rem",
