@@ -41,8 +41,8 @@ const Navigation: React.FC<NavigationProps> = ({ side, isVisible, person, isMobi
 
     // Determine background and text colors based on person - updated for Kiki
     const bgColor = person === "Anton"
-        ? "bg-gradient-to-r from-yellow-100 via-yellow-50 to-white"
-        : "bg-gradient-to-l from-red-100 via-red-50 to-white";
+        ? "bg-gradient-to-l from-yellow-100 via-yellow-50 to-white" // Anton nav (on right) - yellow to white
+        : "bg-gradient-to-r from-red-100 via-red-50 to-white";  // Kiki nav (on left) - red to white
     const textColor = person === "Anton" ? "text-yellow-900" : "text-red-900";
     const hoverColor = person === "Anton" ? "hover:text-yellow-600" : "hover:text-red-600";
     const borderColor = person === "Anton" ? "border-yellow-200" : "border-red-200";
