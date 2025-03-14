@@ -41,10 +41,10 @@ const SplitLayout: React.FC = () => {
         <div className="flex flex-col md:flex-row h-screen w-full overflow-hidden bg-gradient-to-b from-white to-gray-50 relative">
             {/* Background decorative elements */}
             <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
-                <div className="absolute top-10 left-10 w-64 h-64 rounded-full bg-indigo-100 opacity-20 blur-3xl"></div>
-                <div className="absolute bottom-10 right-10 w-80 h-80 rounded-full bg-teal-100 opacity-20 blur-3xl"></div>
-                <div className="absolute top-1/3 right-1/4 w-40 h-40 rounded-full bg-indigo-100 opacity-10 blur-2xl"></div>
-                <div className="absolute bottom-1/3 left-1/4 w-40 h-40 rounded-full bg-teal-100 opacity-10 blur-2xl"></div>
+                <div className="absolute top-10 left-10 w-64 h-64 rounded-full bg-yellow-100 opacity-20 blur-3xl"></div>
+                <div className="absolute bottom-10 right-10 w-80 h-80 rounded-full bg-red-100 opacity-20 blur-3xl"></div>
+                <div className="absolute top-1/3 right-1/4 w-40 h-40 rounded-full bg-yellow-100 opacity-10 blur-2xl"></div>
+                <div className="absolute bottom-1/3 left-1/4 w-40 h-40 rounded-full bg-red-100 opacity-10 blur-2xl"></div>
             </div>
 
             {/* Anton's section */}
@@ -56,31 +56,6 @@ const SplitLayout: React.FC = () => {
                 showNav={showAntonNav}
                 otherSideActive={activeNav === "right"}
                 isMobile={isMobile}
-            />
-
-            {/* Vertical divider line - hidden on mobile */}
-            <motion.div
-                className="hidden md:block w-[1px] h-full bg-gradient-to-b from-transparent via-gray-300 to-transparent relative z-30"
-                animate={{
-                    x:
-                        activeNav === "left"
-                            ? "50vw"
-                            : activeNav === "right"
-                                ? "-50vw"
-                                : 0,
-                    width: activeNav ? "2px" : "1px",
-                    boxShadow: activeNav === "left"
-                        ? "0 0 15px rgba(79, 70, 229, 0.2)" // Indigo glow for Anton
-                        : activeNav === "right"
-                            ? "0 0 15px rgba(20, 184, 166, 0.2)" // Teal glow for Kiki
-                            : "none",
-                }}
-                transition={{
-                    type: "spring",
-                    stiffness: 400,
-                    damping: 25,
-                    duration: 0.2,
-                }}
             />
 
             {/* Kiki's section */}

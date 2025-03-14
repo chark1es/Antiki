@@ -41,16 +41,16 @@ const Navigation: React.FC<NavigationProps> = ({ side, isVisible, person, isMobi
 
     // Determine background and text colors based on person - updated for Kiki
     const bgColor = person === "Anton"
-        ? "bg-gradient-to-b from-indigo-50 to-white"
-        : "bg-gradient-to-b from-teal-50 to-white";
-    const textColor = person === "Anton" ? "text-indigo-900" : "text-teal-900";
-    const hoverColor = person === "Anton" ? "hover:text-indigo-600" : "hover:text-teal-600";
-    const borderColor = person === "Anton" ? "border-indigo-200" : "border-teal-200";
+        ? "bg-gradient-to-b from-yellow-50 to-white"
+        : "bg-gradient-to-b from-red-50 to-white";
+    const textColor = person === "Anton" ? "text-yellow-900" : "text-red-900";
+    const hoverColor = person === "Anton" ? "hover:text-yellow-600" : "hover:text-red-600";
+    const borderColor = person === "Anton" ? "border-yellow-200" : "border-red-200";
 
     // Divider color
     const dividerColor = person === "Anton"
-        ? "bg-gradient-to-r from-transparent via-indigo-300 to-transparent"
-        : "bg-gradient-to-r from-transparent via-teal-300 to-transparent";
+        ? "bg-gradient-to-r from-transparent via-yellow-300 to-transparent"
+        : "bg-gradient-to-r from-transparent via-red-300 to-transparent";
 
     return (
         <motion.div

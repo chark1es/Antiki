@@ -37,8 +37,7 @@ const ProfileSection: React.FC<ProfileSectionProps> = ({
 
     return (
         <motion.div
-            className={`${isMobile ? 'h-1/2 w-full' : 'h-full w-1/2'} flex flex-col items-center justify-center ${side === "left" ? "md:pr-4" : "md:pl-4"
-                } relative`}
+            className={`${isMobile ? 'h-1/2 w-full' : 'h-full w-1/2'} flex flex-col items-center justify-center  relative`}
             initial={{ width: isMobile ? "100%" : "50%", height: isMobile ? "50%" : "100%" }}
             animate={{
                 width: isMobile ? "100%" : "50%",
@@ -52,9 +51,12 @@ const ProfileSection: React.FC<ProfileSectionProps> = ({
         >
             <div
                 className={`h-full w-full flex flex-col items-center justify-center cursor-pointer ${isActive ? bgGradient : `hover:${bgGradient}`
-                    } transition-all duration-300`}
+                    } transition-all duration-300 relative group`}
                 onClick={onToggleNav}
             >
+                {/* Subtle hover overlay */}
+                <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-5 transition-opacity duration-300"></div>
+
                 <motion.div
                     className="flex flex-col items-center px-4"
                     initial={{ y: 0 }}

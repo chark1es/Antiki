@@ -54,12 +54,12 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-    background: rgba(45, 212, 191, 0.3); /* Teal color */
+    background: rgba(220, 38, 38, 0.3); /* Red color */
     border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: rgba(45, 212, 191, 0.5); /* Teal color */
+    background: rgba(220, 38, 38, 0.5); /* Red color */
 }
 
 /* Mobile optimizations */
