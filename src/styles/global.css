@@ -1,1 +1,15 @@
 @import "tailwindcss";
+/* Add custom global styles */
+html,
+body {
+    overscroll-behavior: none;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Add transition styles for smoother animations */
+* {
+    transition-property: background-color, opacity;
+    transition-duration: 150ms;
+}
