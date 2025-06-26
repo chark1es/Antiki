@@ -1,9 +1,8 @@
 import React from "react";
-import { motion } from "framer-motion";
 
 interface ProfileSectionProps {
     name: string;
-    side: "left" | "right";
+    side: "left" | "right" | "top" | "bottom";
     isActive: boolean;
     onToggleNav: () => void;
     showNav: boolean;
@@ -26,69 +25,53 @@ const ProfileSection: React.FC<ProfileSectionProps> = ({
         Kiki: "A creative soul who expresses herself through poetry and photography. Kiki captures the beauty of life both in carefully crafted words and stunning visual compositions that tell stories of their own."
     };
 
-    // Determine background gradient based on side - different colors for Anton and Kiki
-    const bgGradient = side === "left"
-        ? "bg-gradient-to-l from-white via-yellow-50 to-yellow-100" // Anton - white to yellow (left to right)
-        : "bg-gradient-to-r from-white via-red-50 to-red-100";  // Kiki - white to red (right to left)
+    // Determine background gradient based on side and device
+    const bgGradient = (() => {
+        if (isMobile) {
+            return side === "top"
+                ? "bg-gradient-to-b from-yellow-100 via-yellow-50 to-white"
+                : "bg-gradient-to-t from-red-100 via-red-50 to-white";
+        } else {
+            return side === "left"
+                ? "bg-gradient-to-r from-yellow-100 via-yellow-50 to-white"
+                : "bg-gradient-to-l from-red-100 via-red-50 to-white";
+        }
+    })();
 
-    // Text colors for each person
-    const textColor = side === "left" ? "text-yellow-900" : "text-red-900";
-    const textColorLight = side === "left" ? "text-yellow-800" : "text-red-800";
+    // Text colors for each person (Anton = yellow/amber, Kiki = red/rose)
+    const isAnton = side === "left" || side === "top";
+    const textColor = isAnton ? "text-yellow-900" : "text-red-900";
+    const textColorLight = isAnton ? "text-yellow-800" : "text-red-800";
+    const dividerColor = isAnton
+        ? "bg-gradient-to-r from-transparent via-yellow-300 to-transparent"
+        : "bg-gradient-to-r from-transparent via-red-300 to-transparent";
+
+    // Responsive sizing
+    const containerClass = isMobile ? "h-1/2 w-full" : "h-full w-1/2";
 
     return (
-        <motion.div
-            className={`${isMobile ? 'h-1/2 w-full' : 'h-full w-1/2'} flex flex-col items-center justify-center  relative`}
-            initial={{ width: isMobile ? "100%" : "50%", height: isMobile ? "50%" : "100%" }}
-            animate={{
-                width: isMobile ? "100%" : "50%",
-                height: isMobile ? (otherSideActive ? "0%" : "50%") : "100%",
-                opacity: otherSideActive ? (isMobile ? 0 : 0.3) : 1,
-                filter: otherSideActive ? (isMobile ? "blur(0px)" : "blur(2px)") : "none",
-                scale: otherSideActive ? (isMobile ? 1 : 0.95) : 1,
+        <div
+            className={`${containerClass} flex flex-col items-center justify-center relative ${otherSideActive ? 'opacity-30 blur-sm scale-95' : 'opacity-100'}`}
+            style={{
+                height: otherSideActive && isMobile ? '0%' : isMobile ? '50%' : '100%',
                 zIndex: otherSideActive ? 0 : 1,
             }}
-            transition={{ type: "spring", stiffness: 400, damping: 25, duration: 0.2 }}
         >
             <div
-                className={`h-full w-full flex flex-col items-center justify-center cursor-pointer ${bgGradient} transition-all duration-300 relative`}
+                className={`h-full w-full flex flex-col items-center justify-center cursor-pointer ${bgGradient} relative`}
                 onClick={onToggleNav}
             >
-                <motion.div
-                    className="flex flex-col items-center px-4"
-                    initial={{ y: 0 }}
-                    animate={{ y: showNav ? (isMobile ? 0 : -20) : 0 }}
-                    transition={{ type: "spring", stiffness: 400, damping: 25, duration: 0.2 }}
-                >
-                    <motion.h1
-                        className={`${isMobile ? 'text-4xl' : 'text-6xl'} font-serif mb-4 ${textColor}`}
-                        animate={{
-                            scale: showNav ? 0.95 : 1,
-                            opacity: showNav ? 0.8 : 1,
-                        }}
-                        transition={{ duration: 0.3 }}
-                    >
+                <div className="flex flex-col items-center px-4">
+                    <h1 className={`${isMobile ? 'text-4xl' : 'text-6xl'} font-serif mb-4 ${textColor} ${showNav ? 'opacity-80 scale-95' : ''}`}>
                         {name}
-                    </motion.h1>
+                    </h1>
 
-                    <motion.div
-                        className={`w-24 h-0.5 mb-6 ${side === "left"
-                            ? "bg-gradient-to-r from-transparent via-yellow-300 to-transparent"
-                            : "bg-gradient-to-r from-transparent via-red-300 to-transparent"
-                            }`}
-                        animate={{
-                            width: showNav ? "3rem" : "5rem",
-                            opacity: showNav ? 0.6 : 1,
-                        }}
-                        transition={{ duration: 0.2 }}
+                    <div
+                        className={`${showNav ? 'w-12' : 'w-20'} h-0.5 mb-6 ${dividerColor} ${showNav ? 'opacity-60' : ''}`}
                     />
 
-                    <motion.p
-                        className={`text-center max-w-md px-4 ${isMobile ? 'text-sm' : 'text-base'} leading-relaxed ${textColorLight} font-light`}
-                        animate={{
-                            scale: showNav ? 0.95 : 1,
-                            opacity: showNav ? 0.7 : 1,
-                        }}
-                        transition={{ duration: 0.3 }}
+                    <p
+                        className={`text-center max-w-md px-4 ${isMobile ? 'text-sm' : 'text-base'} leading-relaxed ${textColorLight} font-light ${showNav ? 'opacity-70 scale-95' : ''}`}
                     >
                         {isMobile
                             ? (name === "Anton"
@@ -96,10 +79,10 @@ const ProfileSection: React.FC<ProfileSectionProps> = ({
                                 : bioText.Kiki.split('.')[0] + '.')
                             : (name === "Anton" ? bioText.Anton : bioText.Kiki)
                         }
-                    </motion.p>
-                </motion.div>
+                    </p>
+                </div>
             </div>
-        </motion.div>
+        </div>
     );
 };
 

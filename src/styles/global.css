@@ -1,19 +1,20 @@
-@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=Lato:wght@300;400;700&display=swap");
 @import "tailwindcss";
 
-/* Import Google Fonts */
-
-/* Global styles */
+/* Global styles with enhanced typography */
 html,
 body {
     overscroll-behavior: none;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "Lato", sans-serif;
-    color: #333;
-    background-color: #f8fafc; /* Neutral light background */
+    font-family: "Inter", "Lato", sans-serif;
+    color: #1a1a1a;
+    background-color: #fafafa; /* Slightly warmer neutral background */
     -webkit-tap-highlight-color: transparent; /* Remove tap highlight on mobile */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
 }
 
 /* Add transition styles for smoother animations */
@@ -22,9 +23,33 @@ body {
     transition-duration: 200ms; /* Faster transitions */
 }
 
-/* Custom font classes */
+/* Enhanced font classes */
 .font-serif {
     font-family: "Playfair Display", serif;
+    letter-spacing: -0.02em;
+}
+
+.font-sans {
+    font-family: "Inter", "Lato", sans-serif;
+}
+
+/* Typography improvements */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Enhanced focus styles for accessibility */
+button:focus-visible,
+a:focus-visible {
+    outline: 2px solid #3b82f6;
+    outline-offset: 2px;
+    border-radius: 4px;
 }
 
 /* Custom animations */
