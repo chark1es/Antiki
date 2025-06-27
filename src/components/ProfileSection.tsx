@@ -51,9 +51,8 @@ const ProfileSection: React.FC<ProfileSectionProps> = ({
 
     return (
         <div
-            className={`${containerClass} flex flex-col items-center justify-center relative ${otherSideActive ? 'opacity-30 blur-sm scale-95' : 'opacity-100'}`}
+            className={`${containerClass} flex flex-col items-center justify-center relative ${otherSideActive && !isMobile ? 'opacity-30 blur-sm scale-95' : 'opacity-100'}`}
             style={{
-                height: otherSideActive && isMobile ? '0%' : isMobile ? '50%' : '100%',
                 zIndex: otherSideActive ? 0 : 1,
             }}
         >

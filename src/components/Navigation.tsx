@@ -145,7 +145,7 @@ const Navigation: React.FC<NavigationProps> = ({ side, isVisible, person, isMobi
                                         font-medium tracking-wide
                                         relative overflow-hidden
                                     `}
-                                    whileHover={{ scale: 1.05, y: -2 }}
+                                    whileHover={{ scale: isMobile ? 1.02 : 1.05, y: isMobile ? 0 : -2 }}
                                     whileTap={{ scale: 0.98 }}
                                 >
                                     {/* Subtle background hover effect */}
